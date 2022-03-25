@@ -318,6 +318,7 @@ class Admin extends CI_Controller {
 		if ($this->form_validation->run()) {
 			$data = $this->input->post();
 			$data['dateCreated'] = date('Y-m-d H:i:s');
+			$data['firstLoginDate'] = date('Y-m-d');
 			$data['createdBy'] = $data['fname'] . ' ' . $data['lname'];
 			$data['password'] = hash('sha256', $data['password'] . KEY);
 			$data['role'] = 1;

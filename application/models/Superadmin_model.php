@@ -106,6 +106,20 @@ class Superadmin_model extends CI_Model {
 		return $query->row()->deptName;
 	}
 
+	//-----------------------------------
+
+	public function getActiveTestTypes()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->order_by('typeName', 'ASC');
+		$query = $this->db->get('testtype');
+		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
 	//------------------------------------
 
 	public function getOtherDepts($id)
@@ -319,22 +333,26 @@ class Superadmin_model extends CI_Model {
 		$this->db->trans_begin();
 
 		$this->db->insert('questions', ['question' => $data['question'],
-										'deptId' => $data['dept'],
+										'deptId' => $data['dept'], 'testTypeId' => $data['test'],
 										'questiontype' => $data['qtype']]);
 
 		$insertId = $this->db->insert_id();
 
 		$this->db->insert('options', ['option' => $data['option1'],
 										'deptId' => $data['dept'],
+										'testTypeId' => $data['test'],
 										'questionId' => $insertId]);
 		$this->db->insert('options', ['option' => $data['option2'],
 										'deptId' => $data['dept'],
+										'testTypeId' => $data['test'],
 										'questionId' => $insertId]);
 		$this->db->insert('options', ['option' => $data['option3'],
 										'deptId' => $data['dept'],
+										'testTypeId' => $data['test'],
 										'questionId' => $insertId]);
 		$this->db->insert('options', ['option' => $data['option4'],
 										'deptId' => $data['dept'],
+										'testTypeId' => $data['test'],
 										'questionId' => $insertId]);
 
 		$this->db->trans_complete();
@@ -357,13 +375,13 @@ class Superadmin_model extends CI_Model {
 
 		$this->db->insert('questions', ['question' => $data['question'],
 										'deptId' => $data['dept'],
-										'status' => 'Active',
+										'status' => 'Active', 'testTypeId' => $data['test'],
 										'questiontype' => $data['qtype']]);
 
 		$insertId = $this->db->insert_id();
 
 		$this->db->insert('truefalse', ['questionId' => $insertId, 'answer' => $data['yes'],
-										'deptId' => $data['dept']]);
+										'deptId' => $data['dept'], 'testTypeId' => $data['test']]);
 
 		$this->db->trans_complete();
 
@@ -516,6 +534,113 @@ class Superadmin_model extends CI_Model {
 	{
 		$this->db->where('postId =', $data['postId']);
 		return $this->db->update('posts', ['status' => $data['status']]);
+	}
+
+	//----------------------------------------
+
+	public function getTestType()
+	{
+		$this->db->order_by('typeName', 'ASC');
+		$query = $this->db->get('testtype');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-------------------------------------
+
+	public function checkTestName($testname)
+	{
+		$this->db->where('typeName =', $testname);
+		$query = $this->db->get('testtype');
+		return $query->row();
+	}
+
+	//---------------------------------
+
+	public function addTest($testname)
+	{
+		return $this->db->insert('testtype', ['typeName' => $testname, 'status' => 'Active']);
+	}
+
+	//------------------------------------
+
+	public function updateTestType($data)
+	{
+		$this->db->where('testTypeId =', $data['testId']);
+		return $this->db->update('testtype', ['status' => $data['status']]);
+	}
+
+	//------------------------------------
+
+	public function manageQuestions()
+	{
+		$this->db->order_by('deptId', 'ASC');
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-----------------------------------
+
+	public function updateQuestionStatus($data)
+	{
+		$this->db->where('questionId =', $data['questionId']);
+		return $this->db->update('questions', ['status' => $data['status']]);
+	}
+
+	//----------------------------------------
+
+	public function getAnswers($userId)
+	{
+		$this->db->where('staffId =', $userId);
+		$this->db->order_by('id', 'DESC');
+		$this->db->limit(60);
+		$query = $this->db->get('replyanswer');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-----------------------------------------
+
+	public function getAllQuestions()
+	{
+		$this->db->where('testTypeId =', 2);
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+
+	}
+
+	//-----------------------------------------
+
+	public function getAllOptions()
+	{
+		$this->db->where('testTypeId =', 2);
+		$query = $this->db->get('options');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-----------------------------------------
+
+	public function getAllTrueOrFalse()
+	{
+		$this->db->where('testTypeId =', 2);
+		$query = $this->db->get('truefalse');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
 	}
 
 	//----------------------------------------

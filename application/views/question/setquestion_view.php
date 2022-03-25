@@ -51,8 +51,24 @@
                                                     <div class="card-block">
                                                         <?php echo form_open('superadmin/addquestion', ['class' => 'form-material']); ?>
 
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                    <select name="test" id="test" class="form-control">
+                                                                        <option value="">Select Test Type</option>
+                                                                        <?php
+                                                                        foreach($tests as $test)
+                                                                            { 
+                                                                              echo '<option value="'.$test->testTypeId.'">'.$test->typeName.'</option>';
+                                                                            }
+                                                                        ?>
+                                                                    </select>
+                                                                    <?php echo form_error('test', '<div class="text-danger">', '</div>'); ?>
+                                                                </div>
+                                                            </div>
+
                                                             <div class="form-group form-default">
-                                                                <textarea class="form-control" required="" name="question"></textarea>
+                                                                <textarea class="form-control" name="question"></textarea>
                                                                 <span class="form-bar"></span>
                                                                 <label class="float-label">Question</label>
                                                                 <?php echo form_error('question', '<div class="text-danger">', '</div>'); ?>
@@ -111,6 +127,13 @@
                                                                 <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Next</button>
                                                             </div>
                                                         <?php echo form_close(); ?>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card-block">
+                                                                <a href="<?=site_url('superadmin/uploadquestion')?>" class=""><strong>Back Upload Question Menu</strong></a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

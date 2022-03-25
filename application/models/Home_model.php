@@ -12,10 +12,189 @@ class Home_model extends CI_Model {
 
 	//--------------------------------------
 
-	public function getAllQuestions()
+	public function getAllOrganization()
 	{
 		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 14);
+		$this->db->where('testTypeId =', 2);
 		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//--------------------------------------
+
+	public function getAllHr()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 10);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//------------------------------------
+
+	public function getAllMkt()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 11);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-----------------------------------
+
+	public function getAllRecovery()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 4);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//---------------------------------------
+
+	public function getAllIt()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 1);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-------------------------------------------
+
+	public function getAllOperation()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 6);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-------------------------------------------
+
+	public function getAllFinance()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 2);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//---------------------------------------
+
+	public function getAllItu()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 3);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//------------------------------------------
+
+	public function getAllControl()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 5);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-------------------------------------------
+
+	public function getAllAdmin()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 12);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-----------------------------------------
+
+	public function getAllAudit()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 13);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//--------------------------------------
+
+	public function getAllLegal()
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', 9);
+		$this->db->where('testTypeId =', 2);
+		$this->db->order_by('questionId', 'RANDOM');
+		$this->db->limit(5); 
 		$query = $this->db->get('questions');		
 		if($query->num_rows() > 0) {
 			$record = $query->result();
@@ -27,6 +206,7 @@ class Home_model extends CI_Model {
 
 	public function getAllOptions()
 	{
+		$this->db->where('testTypeId =', 2);
 		$this->db->order_by('optionId', 'RANDOM');
 		$query = $this->db->get('options');		
 		if($query->num_rows() > 0) {
@@ -187,6 +367,13 @@ class Home_model extends CI_Model {
 		}
 	}
 
+	//-------------------------------------
+
+	public function submitNotAnswered($id, $userId, $lastattempt)
+	{
+		$this->db->insert('replyanswer', ['questionId' => $id, 'optionId' => 0, 'code' => $lastattempt, 'staffId' => $userId]);
+	}
+
 	//-----------------------------------------
 
 	public function submitFirstTest($score, $count, $lastattempt, $userId)
@@ -344,8 +531,23 @@ class Home_model extends CI_Model {
 	{
 		$this->db->where('status =', 'Active');
 		$this->db->where('deptId =', $deptId);
+		$this->db->where('testTypeId =', 1);
 		$this->db->order_by('questionId', 'RANDOM');
-		$this->db->limit(10);
+		$this->db->limit(5);
+		$query = $this->db->get('questions');		
+		if($query->num_rows() > 0) {
+			$record = $query->result();
+			return array('rows' => $record, 'num' => count($record));
+		}
+	}
+
+	//-----------------------------------------
+
+	public function getDeptQuestionNoRandom($deptId)
+	{
+		$this->db->where('status =', 'Active');
+		$this->db->where('deptId =', $deptId);
+		$this->db->where('testTypeId =', 1);
 		$query = $this->db->get('questions');		
 		if($query->num_rows() > 0) {
 			$record = $query->result();
@@ -358,6 +560,7 @@ class Home_model extends CI_Model {
 	public function getDeptOptions($deptId)
 	{
 		$this->db->where('deptId =', $deptId);
+		$this->db->where('testTypeId =', 1);
 		$this->db->order_by('optionId', 'RANDOM');
 		$query = $this->db->get('options');		
 		if($query->num_rows() > 0) {
@@ -371,6 +574,7 @@ class Home_model extends CI_Model {
 	public function getDeptTrueFalse($deptId)
 	{
 		$this->db->where('deptId =', $deptId);
+		$this->db->where('testTypeId =', 1);
 		$this->db->order_by('trueId', 'RANDOM');
 		$query = $this->db->get('truefalse');		
 		if($query->num_rows() > 0) {
@@ -384,6 +588,7 @@ class Home_model extends CI_Model {
 	public function getDeptMultiAnswers($deptId)
 	{
 		$this->db->where('deptId =', $deptId);
+		$this->db->where('testTypeId =', 1);
 		$query = $this->db->get('options');		
 		if($query->num_rows() > 0) {
 			$record = $query->result();
@@ -396,6 +601,7 @@ class Home_model extends CI_Model {
 	public function getDeptTrueFalseAnswers($deptId)
 	{
 		$this->db->where('deptId =', $deptId);
+		$this->db->where('testTypeId =', 1);
 		$query = $this->db->get('truefalse');		
 		if($query->num_rows() > 0) {
 			$record = $query->result();
@@ -412,4 +618,22 @@ class Home_model extends CI_Model {
 	}
 
 	//------------------------------------------
+
+	public function getVideo($deptId)
+	{
+		$this->db->where('deptId =', $deptId);
+		$query = $this->db->get('inductionvideos');
+		return $query->row()->url;
+	}
+
+	//-----------------------------------------
+
+	public function getDepartmentName($deptId)
+	{
+		$this->db->where('deptId =', $deptId);
+		$query = $this->db->get('departments');
+		return $query->row()->deptName;
+	}
+
+	//----------------------------------------
 }

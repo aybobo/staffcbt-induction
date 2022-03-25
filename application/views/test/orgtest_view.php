@@ -7,7 +7,7 @@
                                     <div class="col-md-8">
                                         <div class="page-header-title">
                                             <h5 class="m-b-10">Citygate E-learning Portal</h5>
-                                            <p class="m-b-0">Prep Test 1 - About Citygate/Empire</p>
+                                            <p class="m-b-0">Prep Module - <?php echo $dept; ?></p>
                                         </div>
                                     </div>
                                     <!--<div class="col-md-4">
@@ -45,16 +45,35 @@
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div>
-                                                            <h5>Prep Test 1</h5>
+                                                            <h5>Prep Module </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h2 class="text-center"><?php echo $dept; ?></h2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-10 offset-md-1">
+                                                                <div class="iframe-container">
+                                                                    <div id="player"></div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="card-block" id="mybut1">
-                                                        <div style="text-align: right; padding-right: 20px; padding-top: 10px;">Time: <?php echo $time;  ?></div>
+                                                        <div style="text-align: right; padding-right: 20px; padding-top: 10px;"></div>
                                                        <p>
-                                                            This prep test is about Citygate/Empire. You are expected to <strong>ATTEMPT ALL QUESTIONS</strong>. You have 5 minutes for this test. Cheers!<br>
-                                                        <button class="button" onclick="myFunction1()">START QUIZ</button>
+                                                            This prep test is about the organisation. You are expected to <strong>ATTEMPT ALL QUESTIONS</strong>. You have 5 minutes for this test. Cheers!<br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="text-center">
+                                                                    <button class="button btn-primary btn-md col-md-3 waves-effect waves-light text-center m-b-20" onclick="myFunction1()"><h3>START QUIZ</h3></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                        </p>
-                                                        
                                                     </div>
                                                     <div class="card-block" id="myDIV1">
                                                         
@@ -65,7 +84,7 @@
                                                         ?>
 
                                                         <p>
-                                                            <?php echo ++$i . ' ' . $question->question; ?>
+                                                            <?php echo '<strong>'.++$i . ' ' . $question->question.'</strong>'; ?>
                                                         </p>
                                                             <?php 
                                                             if ($question->questiontype == 1) {
@@ -114,11 +133,14 @@
                                                                     </div>
                                                         <?php } } } } ?>
 
+                                                            <input type="hidden" name="deptName" value="<?php echo $dept; ?>">
+
                                                             <div class="form-group form-default">
                                                                 <button type="submit" class="btn btn-primary btn-md col-md-3 waves-effect waves-light text-center m-b-20">Submit</button>
                                                             </div>
                                                         <?php echo form_close(); ?>
                                                     </div>
+                                                    <!-- -->
                                                 </div>
                                             </div>
                                             <!--<div class="col-md-6">

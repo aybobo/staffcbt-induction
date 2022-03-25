@@ -7,7 +7,7 @@
                                 <div class="col-md-8">
                                     <div class="page-header-title">
                                         <h5 class="m-b-10">Citygate E-learning Portal</h5>
-                                        <p class="m-b-0">Prep Test - Result (<?php echo $deptname; ?>)</p>
+                                        <p class="m-b-0">Prep Test Answers - <?php echo $deptname; ?></p>
                                     </div>
                                 </div>
                                 <!--<div class="col-md-4">
@@ -33,7 +33,7 @@
                                         <div class="col-sm-12">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h5>Test Result - <?php echo $deptname; ?></h5>
+                                                    <h5>Prep Answers - <?php echo $deptname; ?> </h5>
                                                     <!--<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>-->
                                                     <div class="card-header-right">
                                                         <ul class="list-unstyled card-option">
@@ -48,59 +48,40 @@
                                                 <div class="card-block">
                                                     <?php $i = 0;
                                                     foreach ($values as $value) {
-                                                        $parts = explode("@", $value);
-                                                        foreach ($questions as $question) {
-                                                            
-
-                                                            //one of the questions
-                                                            if ($question->questionId == $parts[0]) {
-                                                                $i++;
+                                                       foreach ($questions as $question) {
+                                                           if ($question->questionId == $value) {
+                                                               $i++;
                                                                 echo '<p><strong>'.$i.' '.$question->question.'</strong>';
 
-                                                                if (count($parts) > 2) {//multichoice ?>
-                                                                    <span>
-                                                                        <?php
-                                                                            foreach ($multi as $mm) {
-                                                                                if ($question->questionId == $mm->questionId) {
-                                                                                  if ($mm->answer == 1) {
-                                                                                      echo '<br><span class="text-success">'.$mm->option.'</span>';
-                                                                                  }
-                                                                                }
-                                                                            }
-
-                                                                            if ($parts[2] == 0) {
-                                                                              foreach ($multi as $mm) {
-                                                                                  if ($mm->optionId == $parts[1]) {
-                                                                                     echo '<br><span class="text-danger">'.$mm->option.'</span>';
-                                                                                  }
-                                                                              }
-                                                                            }
-                                                                         ?>
-                                                                    </span>
-                                                              <?php  }
-                                                                else { ?>
-                                                                    <span>
-                                                                        <?php 
-                                                                        foreach ($true as $xx) {
-                                                                            if ($xx->questionId == $question->questionId) {
-                                                                                 if ($xx->answer == $parts[1]) {
-                                                                                     $y = 'True';
-                                                                                 echo '<br><span class="text-success">'.$y.'</span>';
-                                                                                 }
-                                                                                  else {
-                                                                                $z = 'False';
-                                                                                echo '<br><span class="text-danger">'.$z.'</span>';
-                                                                                }
+                                                                if ($question->questiontype == 1) {
+                                                                    // multichoice
+                                                                    foreach ($multi as $option) {
+                                                                        if ($option->questionId == $question->questionId) {
+                                                                            if ($option->answer == 1) {
+                                                                                echo '<br><span class="text-success">Answer: '.$option->option.'</span>';
                                                                             }
                                                                         }
-
-                                                                         ?>
-                                                                    </span>
-                                                              <?php  }
-                                                              echo '</p>' ;
-                                                            }
-                                                        }
-                                                    }
+                                                                    }
+                                                                }
+                                                                else {
+                                                                    foreach ($true as $m) {
+                                                                        //true or false
+                                                                        if ($m->questionId == $question->questionId) {
+                                                                            if ($m->answer == 1) {
+                                                                                // true
+                                                                                echo '<br><span class="text-success">Answer: True</span>';
+                                                                            }
+                                                                            else {
+                                                                                echo '<br><span class="text-success">Answer: False</span>';
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                
+                                                                echo '</p>';
+                                                           } //question
+                                                       }//foreach question
+                                                    } //foreach values
                                                      ?>
                                                      
                                                 </div>
@@ -109,7 +90,7 @@
                                                          <div class="col-md-6">
                                                              <a href="<?=site_url('home/preporg')?>" class="btn btn-primary">Module Menu</a>
                                                          </div>
-                                                         <div class="col-md-2 offset-md-4">
+                                                         <div class="col-md-3 offset-md-3">
                                                              <?php
                                                             if ($deptId == 0) { ?>
                                                                 <a href="<?=site_url('home/inductiontest')?>" class="btn btn-primary">Take Final Assessment Test</a>

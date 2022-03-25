@@ -69,9 +69,9 @@
                                                             <!-- video -->
 
                                                             <div class="form-group form-default">
-                                                                <textarea class="form-control" required="" name="video"></textarea>
+                                                                <input type="text" required="" name="video" class="form-control" value="<?php echo (isset($_POST['video']) ? $_POST['video'] : ''); ?>">
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Video Url</label>
+                                                                <label class="float-label">Video Id</label>
                                                                 <?php echo form_error('video', '<div class="text-danger">', '</div>'); ?>
                                                             </div>
                                                             

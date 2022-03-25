@@ -138,6 +138,7 @@ class Admin_model extends CI_Model {
 									'role' => $data['role'],
 									'status' => 'Active',
 									'password' => $data['password'],
+									'firstLoginDate' => $data['firstLoginDate'],
 									'createdBy' => $data['createdBy'],
 									'dateCreated' => $data['dateCreated']]);
 

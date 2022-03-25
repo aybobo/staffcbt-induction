@@ -751,9 +751,14 @@
                                                                         else{
                                                                             $score = 'Nil';
                                                                         }
-                                                                        echo $score;
-
+                                                                        if ($score == 'Nil') {
+                                                                            echo $score;
+                                                                        }
+                                                                        else{
                                                                         ?>
+                                                                        <a href="<?=base_url()?>superadmin/viewanswer/?id=<?php echo $row->userId; ?>" class="btn btn-primary btn-sm"><?php echo $score; ?></a>
+
+                                                                    <?php } ?>
                                                                     </td>
                                                                     <td>
                                                                         <?php

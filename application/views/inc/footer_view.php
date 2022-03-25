@@ -137,6 +137,7 @@ function myFunction() {
           success:function(data)
           {
             document.getElementById("noofattempts").value = data;
+            document.getElementById('timer').style.display = 'inline';
             x.style.display = "block";
             startTimer();
           }
@@ -146,6 +147,7 @@ function myFunction() {
 }
 
 window.onload = function() {
+  document.getElementById('timer').style.display = 'none';
   document.getElementById('myDIV').style.display = 'none';
 };
 </script>

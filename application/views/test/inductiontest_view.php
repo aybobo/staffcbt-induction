@@ -61,12 +61,12 @@
                                                         
                                                         <?php echo form_open('home/savetest', ['class' => 'form-material']);
                                                         $i = 0;
-                                                        foreach ($questions as $question) {
+                                                        foreach ($orgs as $question) {
                                                             $qid = $question->questionId;
                                                         ?>
 
                                                         <p>
-                                                            <?php echo ++$i . ' ' . $question->question; ?>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
                                                         </p>
                                                             <?php 
                                                             if ($question->questiontype == 1) {
@@ -110,7 +110,567 @@
                                                                         </div>
                                                                     </div>
                                                         <?php } } ?>
+
+                                                            <!-- hr questions -->
+                                                          <?php  foreach ($hrs as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+
+                                                            <!-- mkt -->
+                                                            <?php  foreach ($mkts as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+
+                                                            <!-- recovery -->
+                                                            <?php  foreach ($recs as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+
+                                                            <!-- it -->
+                                                            <?php  foreach ($its as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+
+                                                            <!-- operations -->
+                                                            <?php  foreach ($ops as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+
+                                                            <!-- finance -->
+                                                            <?php  foreach ($fins as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+
+                                                            <!-- itu -->
+                                                            <?php  foreach ($itus as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+                                                            <!-- control -->
+                                                            <?php  foreach ($ctrs as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+                                                            <!-- admin -->
+                                                            <?php  foreach ($adms as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+                                                            <!-- audit -->
+                                                            <?php  foreach ($audits as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+                                                            <!--legal -->
+                                                            <?php  foreach ($legs as $question) {
+                                                            $qid = $question->questionId;
+                                                        ?>
+
+                                                        <p>
+                                                            <?php echo '<strong>' . ++$i . ' ' . $question->question . '</strong>'; ?>
+                                                        </p>
+                                                            <?php 
+                                                            if ($question->questiontype == 1) {
+                                                             ?>
+                                                            <div class="form-group row">
+                                                                <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                <div class="col-sm-12">
+                                                                   <?php
+
+                                                                   foreach ($options as $option) {
+                                                                      if ($qid == $option->questionId) 
+                                                                        { ?>
+                                                                         <div class="form-check">
+                                                                             <label>
+                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
+                                                                            </label>
+                                                                         </div>
+                                                                    <?php  }
+                                                                   }
+                                                                   ?>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                                }
+                                                                else { ?>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                           <div class="form-check">
+                                                                               <label>
+                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
+                                                                              </label>
+                                                                           </div>
+                                                                        </div>
+                                                                    </div>
+                                                        <?php } } ?>
+                                                            <!-- -->
                                                             <input type="hidden" name="numofquestions" value="<?php echo $numofquestions; ?>">
+
+                                                            <input type="hidden" name="questionids" value="<?php echo $questionids; ?>">
 
                                                             <input type="hidden" name="noofattempts" value="" id="noofattempts">
 

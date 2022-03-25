@@ -7,7 +7,7 @@
                                     <div class="col-md-8">
                                         <div class="page-header-title">
                                             <h5 class="m-b-10">Citygate E-learning Portal</h5>
-                                            <p class="m-b-0">Prep Test 12 - Legal Department</p>
+                                            <p class="m-b-0">Test Type Set-up</p>
                                         </div>
                                     </div>
                                     <!--<div class="col-md-4">
@@ -29,6 +29,7 @@
                             <!-- Main-body start -->
                             <div class="main-body">
                                 <div class="page-wrapper">
+                                  
                                     <!-- Page body start -->
                                     <div class="page-body">
                                         <div class="row">
@@ -41,81 +42,23 @@
                                         </div>
                                         
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6 offset-md-3">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <div>
-                                                            <h5>Prep Test 1</h5>
-                                                        </div>
+                                                        <h5>Add Test Type</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
                                                     </div>
-                                                    <div class="card-block" id="mybut12">
-                                                        <div style="text-align: right; padding-right: 20px; padding-top: 10px;">Time: <?php echo $time;  ?></div>
-                                                       <p>
-                                                            This prep test is about Citygate/Empire. You are expected to <strong>ATTEMPT ALL QUESTIONS</strong>. You have 5 minutes for this test. Cheers!<br>
-                                                        <button class="button" onclick="myFunction12()">START QUIZ</button>
-                                                       </p>
-                                                        
-                                                    </div>
-                                                    <div class="card-block" id="myDIV12">
-                                                        
-                                                        <?php echo form_open('home/savelegaltest', ['class' => 'form-material']);
-                                                        $i = 0;
-                                                        foreach ($questions as $question) {
-                                                            $qid = $question->questionId;
-                                                        ?>
-
-                                                        <p>
-                                                            <?php echo ++$i . ' ' . $question->question; ?>
-                                                        </p>
-                                                            <?php 
-                                                            if ($question->questiontype == 1) {
-                                                             ?>
-                                                            <div class="form-group row">
-                                                                <div class="col-sm-12">
-                                                                   <?php
-
-                                                                   foreach ($options as $option) {
-                                                                      if ($qid == $option->questionId) 
-                                                                        { ?>
-                                                                         <div class="form-check">
-                                                                             <label>
-                                                                                <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@' . $option->optionId . '@' . $option->answer; ?>"> <span class="label-text"><?php echo $option->option; ?></span>
-                                                                            </label>
-                                                                         </div>
-                                                                    <?php  }
-                                                                   }
-                                                                   ?>
-                                                                </div>
-                                                            </div>
-
-                                                            <?php 
-                                                                }
-                                                                else {
-                                                                    foreach ($multis as $multi) {
-                                                                        if ($qid == $multi->questionId) {
-                                                                           
-                                                                     ?>
-                                                                        
-                                                                    <div class="form-group row">
-                                                                        <div class="col-sm-2">
-                                                                           <div class="form-check">
-                                                                               <label>
-                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@1'; ?>"> <span class="label-text">True</span>
-                                                                              </label>
-                                                                           </div>
-                                                                        </div>
-                                                                        <div class="col-sm-2">
-                                                                           <div class="form-check">
-                                                                               <label>
-                                                                                  <input type="radio" name="<?php echo 'question' . $i; ?>" value="<?php echo $qid . '@2'; ?>"> <span class="label-text">False</span>
-                                                                              </label>
-                                                                           </div>
-                                                                        </div>
-                                                                    </div>
-                                                        <?php } } } } ?>
-
+                                                    <div class="card-block">
+                                                        <?php echo form_open('superadmin/addtesttype', ['class' => 'form-material']); ?>
                                                             <div class="form-group form-default">
-                                                                <button type="submit" class="btn btn-primary btn-md col-md-3 waves-effect waves-light text-center m-b-20">Submit</button>
+                                                                <input type="text" name="test" class="form-control">
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Test Type Name</label>
+                                                                <?php echo form_error('test', '<div class="text-danger">', '</div>'); ?>
+                                                            </div>
+                                                            
+                                                            <div class="form-group form-default">
+                                                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Add Test Type</button>
                                                             </div>
                                                         <?php echo form_close(); ?>
                                                     </div>
@@ -819,10 +762,84 @@
                                                 </div>
                                             </div>
                                         </div>-->
+                                        <?php if ($num > 0) { $j = 0; ?>
 
+                                            <div class="row">
+                                                <div class="col-md-8 offset-md-2">
+                                                    <div class="card table-card">
+                                                        <div class="card-header">
+                                                            <h5>All Test Type</h5>
+                                                        </div>
+                                                        <div class="card-block">
+                                                            <div style="padding-left: 10px; padding-right: 10px;">
+                                                                <?php echo form_open('superadmin/edittesttype', 
+                                                                ['class' => 'form_horizontal']); ?>
+
+                                                                <table class="table table-hover" id="datatable">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>S/No</th>
+                                                                        <th>#</th>
+                                                                        <th>Test</th>
+                                                                        <th>Status</th>
+                                                                        <!--<th class="text-right">#</th>-->
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <?php foreach ($tests as $row) { $j++; ?>
+                                                                    <tr>
+                                                                        <?php $val = $row->testTypeId; ?>
+                                                                        <td><?php echo $j; ?></td>
+                                                                        <td>
+                                                                            <input type="checkbox" name="testId[<?php echo  $val ; ?>]" value="<?php echo $val; ?>">
+                                                                        </td>
+                                                                        <td>
+                                                                            <?php echo $row->typeName; ?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <?php
+                                                                                $status = $row->status;
+                                                                                $var = '';
+                                                                                if ($status == 'Active') {
+                                                                                    $var = 'Inactive';
+                                                                                }
+                                                                                else {
+                                                                                    $var = 'Active';
+                                                                                }
+                                                                            ?>
+                                                                            <select name="status[<?php echo  $val ; ?>]">
+                                                                                <option value="<?php echo $status; ?>"><?php echo $status; ?></option>
+                                                                                <option value="<?php echo $var; ?>"><?php echo $var; ?></option>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <?php } ?>
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <div class="row">
+                                                                  <div class="form-group">
+                                                                    <div class="col-md-12">
+                                                                      <div class="submit-btn">
+                                                                             <?php echo form_submit(['name' => 'submit', 
+                                                                                                    'value' => 'Submit',
+                                                                                                    'class' => 'btn btn-success col-md-12']); ?>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+
+                                                                <?php echo form_close(); ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <?php } ?>
                                         <!-- here -->
 
-
+                                        
                                     </div>
                                 </div>
                             </div>

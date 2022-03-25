@@ -7,7 +7,7 @@
                                     <div class="col-md-8">
                                         <div class="page-header-title">
                                             <h5 class="m-b-10">Citygate E-learning Portal</h5>
-                                            <p class="m-b-0">Prep Test</p>
+                                            <p class="m-b-0">Induction Videos</p>
                                         </div>
                                     </div>
                                     <!--<div class="col-md-4">
@@ -45,149 +45,110 @@
                                             <div class="col-md-8 offset-md-2">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5>Prep Test</h5>
+                                                        <h5>Induction Videos</h5>
                                                         <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
                                                     </div>
                                                     <div class="card-block">
                                                         <p>
                                                             The preparatory test are meant to warm you up for the final test. We believe you have watched all the induction videos. All the best.
                                                         </p>
-                                                        <div>
-                                                            <h6>1. About the organization</h6>
-                                                            <a href="<?=site_url('home/orgtest')?>" class="btn btn-primary" >Take Test</a>
+                                                        <?php
+                                                        if ($status == 'Pending') { ?>
+                                                            <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="card-block">
+                                                                    <?php echo form_open('home/orgtest', ['class' => 'form-material']); ?>
+                                                                <div class="form-group form-default">
+                                                                    <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                    <div class="col-sm-12">
+                                                                        <select name="deptId" class="form-control">
+                                                                            <option value="">Select Unit/Department</option>
+                                                                            <option value="14">About Citygate/Empire</option>
+                                                                        <?php
+                                                                        if ($mode > 9) {
+                                                                            echo '<option value="10">Human Resources</option>';
+                                                                        }
+                                                                        if ($mode>19 && $mode<=120) {
+                                                                            echo '<option value="11">Marketing</option>';
+                                                                        }
+                                                                        if ($mode>29 && $mode<=120) {
+                                                                            echo '<option value="4">Recovery</option>';
+                                                                        }
+                                                                        if ($mode>39 && $mode<=120) {
+                                                                            echo '<option value="1">IT</option>';
+                                                                        }
+                                                                        if ($mode>49 && $mode<=120) {
+                                                                            echo '<option value="6">Operations</option>';
+                                                                        }
+                                                                        if ($mode>59 && $mode<=120) {
+                                                                            echo '<option value="2">Finance</option>';
+                                                                        }
+                                                                        if ($mode>69 && $mode<=120) {
+                                                                            echo '<option value="3">ITU</option>';
+                                                                        }
+                                                                        if ($mode>79 && $mode<=120) {
+                                                                            echo '<option value="5">Internal Control</option>';
+                                                                        }
+                                                                        if ($mode>89 && $mode<=120) {
+                                                                            echo '<option value="12">Admin</option>';
+                                                                        }
+                                                                        if ($mode>99 && $mode<=120) {
+                                                                            echo '<option value="13">Audit</option>';
+                                                                        }
+                                                                        if ($mode>109 && $mode<=120) {
+                                                                            echo '<option value="9">Legal</option>';
+                                                                        }
+                                                                        ?>
+                                                                        </select>
+                                                                        <?php echo form_error('role', '<div class="text-danger">', '</div>'); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="val" value="0">
+                                                                <div class="form-group form-default">
+                                                                    <button type="submit" class="btn btn-primary btn-md waves-effect waves-light text-center m-b-20 offset-md-1">Watch Video</button>
+                                                                </div>
+                                                            <?php echo form_close(); ?>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                       <?php }
+                                                        else { ?>
+                                                            <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="card-block">
+                                                                <?php echo form_open('home/orgtest', ['class' => 'form-material']); ?>
+                                                                <div class="form-group form-default">
+                                                                    <!--<label class="col-sm-3 col-form-label">Department</label>-->
+                                                                    <div class="col-sm-12">
+                                                                        <select name="deptId" class="form-control">
+                                                                            <option value="">Select Unit/Department</option>
+                                                                            <option value="14">About Citygate/Empire</option>
+                                                                            <option value="10">Human Resources</option>
+                                                                            <option value="11">Marketing</option>
+                                                                            <option value="4">Recovery</option>
+                                                                            <option value="1">IT</option>
+                                                                            <option value="6">Operations</option>
+                                                                            <option value="2">Finance</option>
+                                                                            <option value="3">ITU</option>
+                                                                            <option value="5">Internal Control</option>
+                                                                            <option value="12">Admin</option>
+                                                                            <option value="13">Audit</option>
+                                                                            <option value="9">Legal</option>
+                                                                        </select>
+                                                                        <?php echo form_error('role', '<div class="text-danger">', '</div>'); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="val" value="0">
+                                                                <div class="form-group form-default">
+                                                                    <button type="submit" class="btn btn-primary btn-md waves-effect waves-light text-center m-b-20 offset-md-1">Watch Video</button>
+                                                                </div>
+                                                            <?php echo form_close(); ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                     <?php   }
+                                                        ?>
 
-                                                        <div class="mar-top">
-                                                            <h6>2. Human Resources Department</h6>
-                                                            <?php 
-                                                            if ($mode < 10 ) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/hrtest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>3. Marketing Department</h6>
-                                                            <?php 
-                                                            if ($mode < 19  && $mode < 29) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/mkttest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>4. Recovery Department</h6>
-                                                            <?php 
-                                                            if ($mode < 29  && $mode < 39) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/rectest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>5. IT Department</h6>
-                                                            <?php 
-                                                            if ($mode < 39  && $mode < 49) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/ittest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>6. Operations Department</h6>
-                                                            <?php 
-                                                            if ($mode < 49  && $mode < 59) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/optest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>7. Finance Department</h6>
-                                                            <?php 
-                                                            if ($mode < 59  && $mode < 69) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/fintest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>8. ITU Department</h6>
-                                                            <?php 
-                                                            if ($mode < 69  && $mode < 79) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/itutest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>9. Internal Control Department</h6>
-                                                            <?php 
-                                                            if ($mode < 79  && $mode < 89) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/ctrtest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>10. Admin Department</h6>
-                                                            <?php 
-                                                            if ($mode < 89  && $mode < 99) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/admtest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>11. Audit Department</h6>
-                                                            <?php 
-                                                            if ($mode < 99  && $mode < 109) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/audtest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
-
-                                                        <div class="mar-top">
-                                                            <h6>12. Legal Department</h6>
-                                                            <?php 
-                                                            if ($mode < 109  && $mode < 119) { ?>
-                                                                <a href="javascript:void(0)" class="btn btn-secondary" aria-current="page">Pending</a>
-                                                            <?php }
-                                                            else { ?>
-                                                               <a href="<?=site_url('home/legaltest')?>" class="btn btn-primary">Take Test</a> 
-                                                          <?php  }
-                                                            ?>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

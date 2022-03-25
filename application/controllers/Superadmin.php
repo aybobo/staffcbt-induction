@@ -834,10 +834,20 @@ class Superadmin extends CI_Controller {
 		//get department name
 		$deptname = $this->superadmin_model->getSingleDeptName($deptId);
 
-		$this->load->view('inc/header_view');
-		$this->load->view('inc/nav_view');
-		$this->load->view('question/setquestion_view',['dept' => $deptname, 'id' => $deptId]);
-		$this->load->view('inc/footer_view');
+		//get active test types
+		$activetests = $this->superadmin_model->getActiveTestTypes();
+
+		if (!$activetests) {
+			$this->session->set_flashdata('msg', 'Add test type');
+			return redirect('superadmin/testtype');
+		}
+		else {
+			$tests = $activetests['rows'];
+			$this->load->view('inc/header_view');
+			$this->load->view('inc/nav_view');
+			$this->load->view('question/setquestion_view',['dept' => $deptname, 'id' => $deptId, 'tests' => $tests]);
+			$this->load->view('inc/footer_view');
+		}
 	}
 
 	//--------------------------------------
@@ -848,8 +858,8 @@ class Superadmin extends CI_Controller {
 		
 		$this->form_validation->set_rules('question', 'Question', 'required');
 		$this->form_validation->set_rules('qtype', 'Question type', 'required');
-		/*$this->form_validation->set_rules('option2', 'Option 2', 'required');
-		$this->form_validation->set_rules('option3', 'Option 3', 'required');
+		$this->form_validation->set_rules('test', 'Test type', 'required');
+		/*$this->form_validation->set_rules('option3', 'Option 3', 'required');
 		$this->form_validation->set_rules('option4', 'Option 4', 'required');*/
 
 		if ($this->form_validation->run()) {
@@ -908,9 +918,17 @@ class Superadmin extends CI_Controller {
 			//get department name
 			$deptname = $this->superadmin_model->getSingleDeptName($deptId);
 
+			//get active test types
+			$activetests = $this->superadmin_model->getActiveTestTypes();
+
+			if (!$activetests) {
+				$this->session->set_flashdata('msg', 'Add test type');
+				return redirect('superadmin/testtype');
+			}
+			$tests = $activetests['rows'];
 			$this->load->view('inc/header_view');
 			$this->load->view('inc/nav_view');
-			$this->load->view('question/setquestion_view',['dept' => $deptname, 'id' => $deptId]);
+			$this->load->view('question/setquestion_view',['dept' => $deptname, 'id' => $deptId, 'tests' => $tests]);
 			$this->load->view('inc/footer_view');
 		}
 	}
@@ -1012,7 +1030,7 @@ class Superadmin extends CI_Controller {
 	public function addvideo()
 	{
 		$this->form_validation->set_rules('dept', 'Department', 'required');
-		$this->form_validation->set_rules('video', 'Video url', 'required');
+		$this->form_validation->set_rules('video', 'Video Id', 'required');
 
 		if ($this->form_validation->run()) {
 			$data = $this->input->post();
@@ -1234,5 +1252,165 @@ class Superadmin extends CI_Controller {
 	}
 
 	//-----------------------------------------------
+
+	public function testtype()
+	{
+		//get all test type
+		$alltest = $this->superadmin_model->getTestType();
+		$tests = '';
+		$num = 0;
+
+		if ($alltest) {
+			$tests = $alltest['rows'];
+			$num = $alltest['num'];
+		}
+
+		$this->load->view('inc/header_view');
+		$this->load->view('inc/nav_view');
+		$this->load->view('induction/testtype_view', ['tests' => $tests, 'num' => $num]);
+		$this->load->view('inc/footer_view');
+	}
+
+	//----------------------------------------------
+
+	public function addtesttype()
+	{
+		//validate login details
+		$this->form_validation->set_rules('test', 'Test type name', 'trim|required');
+
+		if ($this->form_validation->run()) {
+			$testname = $this->input->post('test');
+
+			//check if test name exists
+			$chk = $this->superadmin_model->checkTestName($testname);
+
+			if ($chk) {
+				$this->session->set_flashdata('msg', 'Test type exists');
+				return redirect('superadmin/testtype');
+			}
+
+			//add test
+			$addTest = $this->superadmin_model->addTest($testname);
+
+			if (!$addTest) {
+				$this->session->set_flashdata('msg', 'Unable to add test');
+				return redirect('superadmin/testtype');
+			}
+
+			$this->session->set_flashdata('success', 'Test type successfully added');
+			return redirect('superadmin/testtype');
+		}
+		else {
+			//get all test type
+			$alltest = $this->superadmin_model->getTestType();
+			$tests = '';
+			$num = 0;
+
+			if ($alltest) {
+				$tests = $alltest['rows'];
+				$num = $alltest['num'];
+			}
+
+			$this->load->view('inc/header_view');
+			$this->load->view('inc/nav_view');
+			$this->load->view('induction/testtype_view', ['tests' => $tests, 'num' => $num]);
+			$this->load->view('inc/footer_view');
+		}
+	}
+
+	//------------------------------------------------
+
+	public function edittesttype()
+	{
+		if ($this->input->post('testId')) {
+			$data = array(); $x = '';
+			foreach ($_POST['testId'] as $key => $value) {
+				$data['testId'] = $_POST['testId'][$key];
+				$data['status'] = $_POST['status'][$key];
+
+				//update staff status
+				$updateType = $this->superadmin_model->updateTestType($data);
+			}
+			$this->session->set_flashdata('success', 'Test type status updated');
+			return redirect('superadmin/testtype');
+		}
+		else {
+			$this->session->set_flashdata('success', 'Nothing selected');
+			return redirect('superadmin/testtype');
+		}
+	}
+
+	//---------------------------------------------
+
+	public function managequestion()
+	{
+		//get all questions
+		$allquestions = $this->superadmin_model->manageQuestions();
+
+		if (!$allquestions) {
+			$this->session->set_flashdata('msg', 'No question found');
+			return redirect('home/index');
+		}
+
+		$questions = $allquestions['rows'];
+		$num = $allquestions['num'];
+
+		$this->load->view('inc/header_view');
+		$this->load->view('inc/nav_view');
+		$this->load->view('question/managequestion_view', ['questions' => $questions, 'num' => $num]);
+		$this->load->view('inc/footer_view');
+	}
+
+	//---------------------------------------------
+
+	public function editquestionstatus()
+	{
+		if ($this->input->post('questionId')) {
+			$data = array(); $x = '';
+			foreach ($_POST['questionId'] as $key => $value) {
+				$data['questionId'] = $_POST['questionId'][$key];
+				$data['status'] = $_POST['status'][$key];
+
+				//update staff status
+				$updatequestion = $this->superadmin_model->updateQuestionStatus($data);
+			}
+			$this->session->set_flashdata('success', 'Staff status updated');
+			return redirect('superadmin/managequestion');
+		}
+		else {
+			$this->session->set_flashdata('success', 'Nothing selected');
+			return redirect('superadmin/managequestion');
+		}
+	}
+
+	//-----------------------------------------------
+
+	public function viewanswer()
+	{
+		$userId = $this->input->get('id');
+
+		$userans = $this->superadmin_model->getAnswers($userId);
+		$ansonly = $userans['rows'];
+
+		//get all final questions
+		$allquestions = $this->superadmin_model->getAllQuestions();
+		$questions = $allquestions['rows'];
+
+		//get options
+		$alloptions = $this->superadmin_model->getAllOptions();
+		$options = $alloptions['rows'];
+
+		//true or false option/answer
+		$alltruefalse = $this->superadmin_model->getAllTrueOrFalse();
+		$truefalse = $alltruefalse['rows'];
+		
+		$this->load->view('inc/header_view');
+		$this->load->view('inc/nav_view');
+		$this->load->view('induction/viewanswer_view', ['questions' => $questions, 'ansonly' => $ansonly,
+														'options' => $options, 'truefalse' => $truefalse]);
+		$this->load->view('inc/footer_view');
+	}
+
+	//--------------------------------------------
 
 }

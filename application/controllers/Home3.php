@@ -418,12 +418,11 @@ class Home extends CI_Controller {
 		unset($data['questionids']);
 		unset($data['numofquestions']);
 		unset($data['noofattempts']);
+
 		$lastattempt = date('Y-m-d H:i:s');
 		$userId = $this->session->userdata('userId');
-
 		//get staff record from scores table
 		$scoresheet = $this->home_model->getScoreRecord($userId);
-		
 		if (!empty($data)) {
 			$attemptedquestions = count($data); //total number of attempted question
 			$correct = 0;
@@ -445,11 +444,27 @@ class Home extends CI_Controller {
 	           			$correct = $correct + 1;
 	           		}
 	           	}
+
 	           	$splitid .= $parts[0];
 				if ($kk < count($data)-1) {
 					$splitid .= ', ';
 				}
 				$kk++;
+			}
+
+			$splitansweredids = explode(',' , $splitid);
+
+			$x = 0;
+			if (count($data) < count($allids)) {
+				foreach ($allids as $id) {
+					if (in_array($id, $splitansweredids)) {
+						continue;
+					}
+					else {
+						//unanswered question
+						$unaswered = $this->home_model->submitNotAnswered($id, $userId, $lastattempt);
+					}
+				}
 			}
 
 			$score = (($correct/$num) * 100);
@@ -482,21 +497,6 @@ class Home extends CI_Controller {
 				$this->load->view('inc/footer_view');
 			}
 			else {
-
-				$splitansweredids = explode(',' , $splitid);
-				
-				if (count($data) < count($allids)) { //save unaswered questions
-					foreach ($allids as $id) {
-						if (in_array($id, $splitansweredids)) {
-							continue;
-						}
-						else {
-							//unanswered question
-							$unaswered = $this->home_model->submitNotAnswered($id, $userId, $lastattempt);
-						}
-					}
-				}
-
 				//get hr email
 				$hrEmail = $this->home_model->getHrEmail();
 				$emails = '';
